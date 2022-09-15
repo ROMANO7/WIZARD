@@ -97,19 +97,19 @@ async function yt(url, quality, type, bitrate, server = 'en68') {
 }
 
 module.exports = {
-    yt,
-    ytIdRegex,
-    /**
-     * Download YouTube Video as Audio via y2mate
-     * @param {String} url YouTube Video URL
-     * @param {String} server (avaiable: `id4`, `en60`, `en61`, `en68`)
-     */
-    yta(url, server = 'en68') { return yt(url, '128kbps', 'mp3', '128', server) },
-    /**
-     * Download YouTube Video as Video via y2mate
-     * @param {String} url YouTube Video URL
-     * @param {String} server (avaiable: `id4`, `en60`, `en61`, `en68`)
-     */
-    ytv(url, server = 'en68') { return yt(url, '360p', 'mp4', '360', server) },
-    servers: ['id4', 'en60', 'en61', 'en68']
+  yt,
+  ytIdRegex,
+  /**
+   * Download YouTube Video as Audio via y2mate
+   * @param {String} url YouTube Video URL
+   * @param {String} server (avaiable: `id4`, `en60`, `en61`, `en68`)
+   */
+  yta(url, resol = '128kbps', server = 'en154') { return yt(url, resol, 'mp3', resol.endsWith('kbps') ? resol.replace(/kbps/g, '') : resol, server) },
+  /**
+   * Download YouTube Video as Video via y2mate
+   * @param {String} url YouTube Video URL
+   * @param {String} server (avaiable: `id4`, `en60`, `en61`, `en68`)
+   */
+  ytv(url, resol = '360p', server = 'en154') { return yt(url, resol, 'mp4', resol.endsWith('p') ? resol.replace(/p/g, '') : resol, server) },
+  servers: ['en136', 'id4', 'en60', 'en61', 'en68']
 }
