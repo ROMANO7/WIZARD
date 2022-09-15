@@ -86,13 +86,14 @@ async function yt(url, quality, type, bitrate, server = 'en68') {
         fquality: bitrate
     })
     let json2 = await res2.json()
-    let KB = parseFloat(filesize) * (1000 * /MB$/.test(filesize))
-    return {
-        dl_link: /<a.+?href="(.+?)"/.exec(json2.result)[1],
-        thumb,
-        title,
-        filesizeF: filesize,
-        filesize: KB
+  let KB = parseFloat(filesize) * (1000 * /MB$/.test(filesize))
+  let resUrl = /<a.+?href="(.+?)"/.exec(json2.result)[1]
+  return {
+    dl_link: resUrl.replace(/https/g, 'http'),
+    thumb,
+    title,
+    filesizeF: filesize,
+    filesize: KB
     }
 }
 
